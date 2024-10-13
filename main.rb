@@ -8,4 +8,7 @@ game.add_piece(0, 'X')
 game.add_piece(0, 'X')
 game.add_piece(0, 'X')
 game.add_piece(0, 'X')
+game.add_piece(0, 'X')
+game.add_piece(0, 'X')
+game.add_piece(0, 'X')
 p game.grid

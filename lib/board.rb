@@ -9,6 +9,8 @@ class Board
 
   def add_piece(column, piece)
     row = lowest_available_row(column)
+    raise 'Column is full' unless row
+
     grid[row][column] = piece
   end
 
