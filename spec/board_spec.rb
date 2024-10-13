@@ -11,4 +11,13 @@ describe Board do
       expect(board.grid.all? { |row| row.length == 7 }).to be true
     end
   end
+
+  describe '#add_piece' do
+    it 'adds a piece to the correct column' do
+      column = 0
+      piece = 'X'
+      board.add_piece(column, piece)
+      expect(board.grid[5][column]).to eq(piece)
+    end
+  end
 end
