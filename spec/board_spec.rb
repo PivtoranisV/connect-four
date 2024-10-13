@@ -22,12 +22,34 @@ describe Board do
       end
     end
 
+    context 'When in column is 3 pieces' do
+      it 'adds a piece to the row[3] of column' do
+        column = 0
+        piece = 'X'
+        3.times { board.add_piece(column, piece) }
+        expect(board.grid[3][column]).to eq(piece)
+      end
+    end
+
     context 'When column is full' do
       it 'does not allow a piece to be added' do
         column = 0
         piece = 'X'
         6.times { board.add_piece(column, piece) }
         expect { board.add_piece(column, piece) }.to raise_error('Column is full')
+      end
+    end
+  end
+
+  describe '#game_over' do
+    context 'When 4 same pieces consecutively in a row' do
+      it 'returns true' do
+        piece = 'X'
+        board.add_piece(0, piece)
+        board.add_piece(1, piece)
+        board.add_piece(2, piece)
+        board.add_piece(3, piece)
+        expect(board).to be_game_over
       end
     end
   end
