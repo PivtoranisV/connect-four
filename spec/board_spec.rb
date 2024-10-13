@@ -13,11 +13,22 @@ describe Board do
   end
 
   describe '#add_piece' do
-    it 'adds a piece to the correct column' do
-      column = 0
-      piece = 'X'
-      board.add_piece(column, piece)
-      expect(board.grid[5][column]).to eq(piece)
+    context 'When column is empty' do
+      it 'adds a piece to the bottom of column' do
+        column = 0
+        piece = 'X'
+        board.add_piece(column, piece)
+        expect(board.grid[5][column]).to eq(piece)
+      end
+    end
+
+    context 'When column is full' do
+      it 'does not allow a piece to be added' do
+        column = 0
+        piece = 'X'
+        6.times { board.add_piece(column, piece) }
+        expect { board.add_piece(column, piece) }.to raise_error('Column is full')
+      end
     end
   end
 end
