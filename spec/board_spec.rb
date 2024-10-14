@@ -52,5 +52,13 @@ describe Board do
         expect(board).to be_game_over
       end
     end
+    context 'When 4 same pieces consecutively in a column' do
+      it 'returns true' do
+        piece = 'X'
+        4.times { board.add_piece(0, piece) }
+        board.add_piece(0, '0')
+        expect(board).to be_game_over
+      end
+    end
   end
 end
