@@ -30,6 +30,10 @@ class Board
     false
   end
 
+  def game_tie?
+    grid.flatten.none?(&:nil?) && !game_over?
+  end
+
   private
 
   def create_grid(rows = 6, columns = 7)

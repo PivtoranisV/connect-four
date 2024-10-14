@@ -86,7 +86,7 @@ describe Board do
         board.grid[4] = [piece_x, piece_x, piece_p, piece_p, piece_x, piece_p, piece_x]
         board.grid[5] = [piece_p, piece_x, piece_x, piece_p, piece_p, piece_x, piece_p]
 
-        expect(board).to be_tie_game
+        expect(board).to be_game_tie
       end
     end
   end
