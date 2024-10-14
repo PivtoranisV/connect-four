@@ -27,11 +27,8 @@ class Board
       [grid[0][5], grid[1][5], grid[2][5], grid[3][5], grid[4][5], grid[5][5]],
       [grid[0][6], grid[1][6], grid[2][6], grid[3][6], grid[4][6], grid[5][6]]
     ]
-    winning_combination.each do |combo|
-      combo.each_cons(4) do |four_cell|
-        return true if four_cell.uniq.size == 1 && !four_cell.include?(nil)
-      end
-    end
+    return true if four_in_line(winning_combination)
+
     false
   end
 
@@ -43,5 +40,14 @@ class Board
 
   def lowest_available_row(column)
     (grid.length - 1).downto(0).find { |row| grid[row][column].nil? }
+  end
+
+  def four_in_line(line)
+    line.each do |combo|
+      combo.each_cons(4) do |four_cell|
+        return true if four_cell.uniq.size == 1 && !four_cell.include?(nil)
+      end
+    end
+    false
   end
 end
