@@ -4,27 +4,36 @@ require_relative '../lib/player'
 
 describe Player do
   subject(:player) { described_class.new('Bob', 'X') }
+
   describe '#initialize' do
-    it 'Creates player with name and piece' do
+    it 'Creates a player with a name and piece' do
       expect(player.name).to eq('Bob')
       expect(player.piece).to eq('X')
     end
   end
 
   describe '#make_move' do
-    context 'when valid move is entered' do
-      it 'returns the chosen column number' do
-        allow(player).to receive(:gets).and_return('1')
+    let(:valid_column) { '3' }
+    let(:invalid_column) { '8' }
 
-        expect(player.make_move).to eq('1')
+    context 'when valid column is provided' do
+      it 'returns the chosen column' do
+        allow(player).to receive(:gets).and_return(valid_column)
+        expect(player.make_move).to eq(valid_column)
       end
     end
 
-    context 'when invalid move is entered' do
-      it 'prompts for input again' do
-        allow(player).to receive(:gets).and_return('9', 'abc', '2')
+    context 'when invalid column is provided' do
+      it 'prompts for input again and returns the chosen column' do
+        allow(player).to receive(:gets).and_return(invalid_column, valid_column)
+        expect(player.make_move).to eq(valid_column)
+      end
+    end
 
-        expect(player.make_move).to eq('2')
+    context 'when non-numeric input is provided' do
+      it 'prompts for input again and returns the chosen column' do
+        allow(player).to receive(:gets).and_return('abc', valid_column)
+        expect(player.make_move).to eq(valid_column)
       end
     end
   end
