@@ -2,7 +2,7 @@
 
 require_relative '../lib/player'
 
-describe Player do
+describe Player do # rubocop:disable Metrics/BlockLength
   subject(:player) { described_class.new('Bob', 'X') }
 
   describe '#initialize' do
