@@ -2,6 +2,7 @@
 
 require_relative '../lib/board'
 
+# rubocop:disable Metrics/BlockLength, Lint/MissingCopEnableDirective
 describe Board do
   subject(:board) { described_class.new }
 
@@ -57,6 +58,20 @@ describe Board do
         piece = 'X'
         4.times { board.add_piece(0, piece) }
         board.add_piece(0, '0')
+        expect(board).to be_game_over
+      end
+    end
+    context 'When 4 same pieces consecutively in a diagonal' do
+      it 'returns true' do
+        piece_x = 'X'
+        piece_p = 'P'
+        board.add_piece(0, piece_x)
+        board.add_piece(1, piece_p)
+        board.add_piece(1, piece_x)
+        2.times { board.add_piece(2, piece_p) }
+        board.add_piece(2, piece_x)
+        3.times { board.add_piece(3, piece_p) }
+        board.add_piece(3, piece_x)
         expect(board).to be_game_over
       end
     end
