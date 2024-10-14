@@ -12,6 +12,22 @@ class Game
     setup_players
   end
 
+  def play
+    loop do
+      column_option = @player1.make_move
+      @board.add_piece(column_option, @player1.piece)
+      display_board
+      break if @board.game_over?
+
+      column_option = @player2.make_move
+      @board.add_piece(column_option, @player2.piece)
+      display_board
+      break if @board.game_over?
+    end
+  end
+
+  private
+
   def setup_players
     puts 'Player 1, please enter your name:'.colorize(:green)
     player1_name = gets.chomp
@@ -35,8 +51,6 @@ class Game
 
     display_board
   end
-
-  private
 
   def display_board
     puts '|  1  |  2  |  3  |  4  |  5  |  6  |  7  |'.colorize(color: :yellow, mode: :bold)
