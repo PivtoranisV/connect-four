@@ -11,7 +11,9 @@ class Player
   def make_move
     puts "#{name}, please choose where you want to drop your piece (#{piece})"
     puts 'Please enter a number of column from 1 to 7 to identify your option:'
-
-    gets.chomp
+    loop do
+      answer = gets.chomp
+      return answer if answer.match?(/^[1-7]$/)
+    end
   end
 end
