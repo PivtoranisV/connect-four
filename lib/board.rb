@@ -23,6 +23,10 @@ class Board
     grid.transpose.each do |column|
       return true if four_in_line?(column)
     end
+    # Diagonal
+    return true if diagonal_check(grid)
+    return true if diagonal_check(grid.reverse)
+
     false
   end
 
@@ -39,6 +43,17 @@ class Board
   def four_in_line?(line)
     line.each_cons(4) do |four_cell|
       return true if four_cell.uniq.size == 1 && !four_cell.include?(nil)
+    end
+    false
+  end
+
+  def diagonal_check(grid)
+    # Loop over possible diagonal starting points
+    (0..grid.length - 4).each do |row|
+      (0..grid[0].length - 4).each do |col|
+        diagonal = (0..3).map { |i| grid[row + i][col + i] }
+        return true if four_in_line?(diagonal)
+      end
     end
     false
   end
