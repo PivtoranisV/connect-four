@@ -19,5 +19,13 @@ describe Player do
         expect(player.make_move).to eq('1')
       end
     end
+
+    context 'when invalid move is entered' do
+      it 'prompts for input again' do
+        allow(player).to receive(:gets).and_return('9', 'abc', '2')
+
+        expect(player.make_move).to eq('2')
+      end
+    end
   end
 end
