@@ -26,26 +26,10 @@ class Game
   private
 
   def setup_players
-    puts 'Player 1, please enter your name:'.colorize(:green)
-    player1_name = gets.chomp
-    player1_name = 'Player 1' if player1_name.strip.empty?
-    player1_piece = player_piece
-    puts "Hi #{player1_name}, your marker will be - #{player1_piece}".colorize(:blue)
+    @player1 = create_player('Player 1', nil)
+    @player2 = create_player('Player 2', @player1.piece)
 
-    puts 'Player 2, please enter your name:'.colorize(:green)
-    player2_name = gets.chomp
-    player2_name = 'Player 2' if player2_name.strip.empty?
-    player2_piece = player_piece(player1_piece)
-    puts "Hi #{player2_name}, your marker will be - #{player2_piece}".colorize(:blue)
-
-    sleep(1)
-
-    @player1 = Player.new(player1_name, player1_piece)
-    @player2 = Player.new(player2_name, player2_piece)
-
-    puts "\n#{player1_name} and #{player2_name}, please check below the starting game board".colorize(:green)
-    puts "You can place your piece in one of the SEVEN columns\n".colorize(:green)
-
+    puts "\n#{@player1.name} and #{@player2.name}, please check below the starting game board\n".colorize(:green)
     display_board
   end
 
@@ -85,5 +69,15 @@ class Game
     else
       puts "\nIt's a tie!".colorize(:yellow)
     end
+  end
+
+  def create_player(default_name, other_piece)
+    puts "#{default_name}, please enter your name:".colorize(:green)
+    name = gets.chomp
+    name = default_name if name.strip.empty?
+    piece = other_piece ? player_piece(other_piece) : player_piece
+    puts "Hi #{name}, your piece will be - #{piece}".colorize(:blue)
+    sleep(1)
+    Player.new(name, piece)
   end
 end

@@ -11,13 +11,13 @@ class Player
   end
 
   def make_move(board)
-    puts "#{name}, please choose where you want to drop your piece (#{piece})".colorize(background: :green)
-    puts 'Please enter a number of column from 1 to 7 to identify your option:'.colorize(background: :green)
+    puts "\n#{name}, please choose where you want to drop your piece (#{piece})".colorize(color: :green)
+    puts 'Please enter a number of column from 1 to 7 to identify your option:'.colorize(color: :green)
     loop do
       answer = gets.chomp.to_i - 1
       return answer if valid_input(answer, board)
 
-      puts 'Invalid option. Either the input is not a number between 1-7 or column is already full.'.colorize(
+      puts 'Invalid option. Either the input is not a number between 1-7 or the column is full.'.colorize(
         background: :red
       )
     end
