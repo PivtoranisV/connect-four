@@ -15,11 +15,12 @@ class Game
   def play
     loop do
       player_turn(@player1)
-      break if @board.check_winner
+      break if game_over?
 
       player_turn(@player2)
-      break if @board.check_winner
+      break if game_over?
     end
+    display_result
   end
 
   private
@@ -70,5 +71,19 @@ class Game
     column_option = player.make_move(@board)
     @board.add_piece(column_option, player.piece)
     display_board
+  end
+
+  def game_over?
+    @board.check_winner || @board.game_tie?
+  end
+
+  def display_result
+    winner_piece = @board.check_winner
+    if winner_piece
+      winner_name = winner_piece == @player1.piece ? @player1.name : @player2.name
+      puts "\n#{winner_name} wins! Congratulations!".colorize(:blue)
+    else
+      puts "\nIt's a tie!".colorize(:yellow)
+    end
   end
 end
