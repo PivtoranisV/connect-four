@@ -15,10 +15,10 @@ class Game
   def play
     loop do
       player_turn(@player1)
-      break if @board.game_over?
+      break if @board.check_winner
 
       player_turn(@player2)
-      break if @board.game_over?
+      break if @board.check_winner
     end
   end
 
