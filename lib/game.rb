@@ -14,14 +14,10 @@ class Game
 
   def play
     loop do
-      column_option = @player1.make_move(@board)
-      @board.add_piece(column_option, @player1.piece)
-      display_board
+      player_turn(@player1)
       break if @board.game_over?
 
-      column_option = @player2.make_move(@board)
-      @board.add_piece(column_option, @player2.piece)
-      display_board
+      player_turn(@player2)
       break if @board.game_over?
     end
   end
@@ -68,5 +64,11 @@ class Game
     return PIECES_OPTIONS.sample unless piece
 
     PIECES_OPTIONS.reject { |el| el == piece }[0]
+  end
+
+  def player_turn(player)
+    column_option = player.make_move(@board)
+    @board.add_piece(column_option, player.piece)
+    display_board
   end
 end
