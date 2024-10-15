@@ -1,5 +1,7 @@
 # Connect Four
 
+![Connect Four Game](assets/connect_four.png)
+
 ## Introduction
 
 Connect Four is a classic two-player game where players take turns dropping colored discs into a vertical grid. The objective is to be the first to form a horizontal, vertical, or diagonal line of four of one's own discs. This project implements the game in Ruby, focusing on Test-Driven Development (TDD) principles.
@@ -43,7 +45,7 @@ Connect Four is a classic two-player game where players take turns dropping colo
 1. Run the game:
 
 ```bash
-  bundle exec ruby main.
+  bundle exec ruby main.rb
 ```
 
 1. Follow the prompts to enter player names and select pieces.
