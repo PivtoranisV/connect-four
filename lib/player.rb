@@ -14,10 +14,10 @@ class Player
     puts "#{name}, please choose where you want to drop your piece (#{piece})".colorize(background: :green)
     puts 'Please enter a number of column from 1 to 7 to identify your option:'.colorize(background: :green)
     loop do
-      answer = gets.chomp.to_i
+      answer = gets.chomp.to_i - 1
       return answer if valid_input(answer, board)
 
-      puts 'Invalid option. The input should be a number between 1-7.'.colorize(
+      puts 'Invalid option. Either the input is not a number between 1-7 or column is already full.'.colorize(
         background: :red
       )
     end
@@ -26,6 +26,6 @@ class Player
   private
 
   def valid_input(input, board)
-    input.to_s.match?(/^[1-7]$/) && board.lowest_available_row(input)
+    input.between?(0, 6) && board.lowest_available_row(input)
   end
 end

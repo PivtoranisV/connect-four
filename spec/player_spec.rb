@@ -21,7 +21,7 @@ describe Player do # rubocop:disable Metrics/BlockLength
       it 'returns the chosen column' do
         allow(board).to receive(:lowest_available_row).and_return(true)
         allow(player).to receive(:gets).and_return(valid_column)
-        expect(player.make_move(board)).to eq(valid_column.to_i)
+        expect(player.make_move(board)).to eq(valid_column.to_i - 1)
       end
     end
 
@@ -29,7 +29,7 @@ describe Player do # rubocop:disable Metrics/BlockLength
       it 'prompts for input again and returns the chosen column' do
         allow(board).to receive(:lowest_available_row).and_return(true)
         allow(player).to receive(:gets).and_return(invalid_column, valid_column)
-        expect(player.make_move(board)).to eq(valid_column.to_i)
+        expect(player.make_move(board)).to eq(valid_column.to_i - 1)
       end
     end
 
@@ -37,7 +37,7 @@ describe Player do # rubocop:disable Metrics/BlockLength
       it 'prompts for input again and returns the chosen column' do
         allow(board).to receive(:lowest_available_row).and_return(true)
         allow(player).to receive(:gets).and_return('abc', valid_column)
-        expect(player.make_move(board)).to eq(valid_column.to_i)
+        expect(player.make_move(board)).to eq(valid_column.to_i - 1)
       end
     end
 
@@ -46,7 +46,7 @@ describe Player do # rubocop:disable Metrics/BlockLength
         allow(board).to receive(:lowest_available_row).and_return(nil, true)
         allow(player).to receive(:gets).and_return('full_column', valid_column)
 
-        expect(player.make_move(board)).to eq(valid_column.to_i)
+        expect(player.make_move(board)).to eq(valid_column.to_i - 1)
       end
     end
   end
