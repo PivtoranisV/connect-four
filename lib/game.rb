@@ -14,12 +14,12 @@ class Game
 
   def play
     loop do
-      column_option = @player1.make_move
+      column_option = @player1.make_move(@board)
       @board.add_piece(column_option, @player1.piece)
       display_board
       break if @board.game_over?
 
-      column_option = @player2.make_move
+      column_option = @player2.make_move(@board)
       @board.add_piece(column_option, @player2.piece)
       display_board
       break if @board.game_over?

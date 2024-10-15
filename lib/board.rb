@@ -34,14 +34,14 @@ class Board
     grid.flatten.none?(&:nil?) && !game_over?
   end
 
+  def lowest_available_row(column)
+    (grid.length - 1).downto(0).find { |row| grid[row][column].nil? }
+  end
+
   private
 
   def create_grid(rows = 6, columns = 7)
     Array.new(rows) { Array.new(columns) }
-  end
-
-  def lowest_available_row(column)
-    (grid.length - 1).downto(0).find { |row| grid[row][column].nil? }
   end
 
   def four_in_line?(line)
