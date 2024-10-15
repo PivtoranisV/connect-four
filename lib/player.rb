@@ -2,6 +2,11 @@
 
 require 'colorize'
 
+# The Player class represents a participant in the Connect Four game.
+# It encapsulates the player's name and the game piece they use to make moves.
+#
+# The Player class interacts with the Board class to manage player moves and validate
+# game state. It ensures that players can only make valid moves in the game.
 class Player
   attr_reader :name, :piece
 

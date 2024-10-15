@@ -3,6 +3,11 @@
 require 'colorize'
 require_relative 'board'
 
+# The Game class represents the main flow of the Connect Four game.
+# It is responsible for initializing the game, handling player interactions,
+# managing turns, and checking for win or tie conditions.
+#
+# The Game class makes use of the Board and Player classes to manage the game's logic and interactions.
 class Game
   PIECES_OPTIONS = ["\u26AB", "\u26AA"].freeze
 

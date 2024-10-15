@@ -1,5 +1,12 @@
 # frozen_string_literal: true
 
+# The Board class represents the game board for Connect Four, managing the grid
+# where players place their pieces. It provides methods to manipulate the board,
+# check for winning conditions, and determine if the game has ended in a tie.
+#
+# The Board class works closely with the Player class and the Game class to manage
+# the game state and ensure valid moves are made. It handles the core logic for
+# detecting game outcomes and maintaining the integrity of the game board.
 class Board
   attr_reader :grid
 
