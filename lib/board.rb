@@ -34,7 +34,7 @@ class Board
   end
 
   def game_tie?
-    grid.flatten.none?(&:nil?) && !game_over?
+    grid.flatten.none?(&:nil?) && !check_winner
   end
 
   def lowest_available_row(column)

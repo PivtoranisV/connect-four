@@ -42,26 +42,28 @@ describe Board do
     end
   end
 
-  describe '#game_over?' do
+  describe '#check_winner' do
     context 'When 4 same pieces consecutively in a row' do
-      it 'returns true' do
+      it 'returns the winning piece' do
         piece_x = 'X'
         4.times { |i| board.add_piece(i, piece_x) }
-        expect(board).to be_game_over
+        expect(board.check_winner).to eq(piece_x)
       end
     end
+
     context 'When 4 same pieces consecutively in a column' do
-      it 'returns true' do
+      it 'returns the winning piece' do
         piece_x = 'X'
         4.times { board.add_piece(0, piece_x) }
-        board.add_piece(0, '0')
-        expect(board).to be_game_over
+        expect(board.check_winner).to eq(piece_x)
       end
     end
+
     context 'When 4 same pieces consecutively in a diagonal' do
-      it 'returns true' do
+      it 'returns the winning piece' do
         piece_x = 'X'
         piece_p = 'P'
+
         board.add_piece(0, piece_x)
         board.add_piece(1, piece_p)
         board.add_piece(1, piece_x)
@@ -69,7 +71,8 @@ describe Board do
         board.add_piece(2, piece_x)
         3.times { board.add_piece(3, piece_p) }
         board.add_piece(3, piece_x)
-        expect(board).to be_game_over
+
+        expect(board.check_winner).to eq(piece_x)
       end
     end
   end
